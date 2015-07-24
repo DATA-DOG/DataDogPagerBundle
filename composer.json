@@ -1,5 +1,5 @@
 {
-  "name": "data-dog/DataDogPagerBundle",
+  "name": "data-dog/pager-bundle",
   "type": "symfony-bundle",
   "description": "Paginator bundle for symfony2 and doctrine orm, allows customization with filters and sorters",
   "keywords": ["pager", "paginator", "pagination", "symfony2", "bundle", "doctrine", "orm"],
