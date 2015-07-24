@@ -1,3 +1,45 @@
+{% extends "::layout.html.twig" %}
+
 {% block body %}
-  hello
+  <div class="page-header">
+    <h1>Paginated project list</h1>
+    <p class="lead">Pagination with sorters and custom filters.</p>
+  </div>
+
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>{{ sorter_link(projects, "p.code", "Code") }}</th>
+        <th>{{ sorter_link(projects, "p.name", "Name") }}</th>
+        <th>{{ sorter_link(projects, "p.hoursSpent", "Hours") }}</th>
+        <th>{{ sorter_link(projects, "l.code", "Language") }}</th>
+      </tr>
+
+      {# <tr role="row" class="filter"> #}
+      {#   <td>{{ filter_search(orders, "c.name") }}</td> #}
+      {#   <td>{{ filter_select(orders, "c.giftangoId", providers) }}</td> #}
+      {#   <td></td> #}
+      {#   <td></td> #}
+      {#   <td>{{ filter_select(orders, "o.status", statuses) }}</td> #}
+      {#   <td></td> #}
+      {#   <td></td> #}
+      {# </tr> #}
+    </thead>
+    <tbody>
+      {% for project in projects %}
+        <tr>
+          <td>{{ project.id }}</td>
+          <td>{{ project.code }}</td>
+          <td>{{ project.name }}</td>
+          <td>{{ project.hoursSpent }}</td>
+          <td>{{ project.language.code }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <div class="panel-footer">
+    {{ pagination(projects) }}
+  </div>
 {% endblock %}

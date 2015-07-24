@@ -11,11 +11,13 @@ class Projects implements OrderedFixtureInterface, FixtureInterface
 {
     public function load(ObjectManager $manager)
     {
-        list($go, $haskell, $php) = $manager->getRepository('AppBundle:Language')
+        $langs = $manager->getRepository('AppBundle:Language')
             ->createQueryBuilder('l')
             ->orderBy('l.code', 'ASC')
             ->getQuery()
             ->getResult();
+
+        list($go, $haskell, $php) = $langs;
 
         $pager = new Project();
         $pager->setCode("pg")
@@ -44,6 +46,17 @@ class Projects implements OrderedFixtureInterface, FixtureInterface
             ->setLanguage($haskell)
             ->setHoursSpent(9999);
         $manager->persist($xmonad);
+
+        $faker = \Faker\Factory::create();
+        for ($i = 0; $i < 200; $i++) {
+            $project = new Project();
+            $project->setLanguage($faker->randomElement($langs));
+            $project->setCode($faker->word);
+            $project->setName($faker->sentence(5));
+            $project->setHoursSpent($faker->numberBetween(1, 100));
+
+            $manager->persist($project);
+        }
 
         $manager->flush();
     }

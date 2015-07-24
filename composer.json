@@ -33,6 +33,7 @@
     "doctrine/doctrine-bundle": "~1.4",
     "doctrine/doctrine-fixtures-bundle": "~2.2.0",
     "sensio/framework-extra-bundle": "~3.0.9",
+    "fzaninotto/faker": "~1.5",
 
     "phpunit/phpunit": "~4.7.0"
   },

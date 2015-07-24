@@ -2,11 +2,11 @@
 <ul class="pagination">
   {% if pager.pagination.previous is defined %}
     <li>
-      <a href="{{ path(pager.route, pager.query|merge({"page": pager.pagination.previous})) }}">&laquo;&nbsp;{{ 'Previous'|trans }}</a>
+      <a href="{{ path(pager.route, pager.query|merge({"page": pager.pagination.previous})) }}">&laquo;</a>
     </li>
   {% else %}
     <li class="disabled">
-      <span>&laquo;&nbsp;{{ 'Previous'|trans }}</span>
+      <span>&laquo;</span>
     </li>
   {% endif %}
 
@@ -56,11 +56,11 @@
 
   {% if pager.pagination.next is defined %}
   <li>
-    <a href="{{ path(pager.route, pager.query|merge({"page": pager.pagination.next})) }}">{{ 'Next'|trans }}&nbsp;&raquo;</a>
+    <a href="{{ path(pager.route, pager.query|merge({"page": pager.pagination.next})) }}">&raquo;</a>
   </li>
   {% else %}
   <li class="disabled">
-    <span>{{ 'Next'|trans }}&nbsp;&raquo;</span>
+    <span>&raquo;</span>
   </li>
   {% endif %}
 </ul>

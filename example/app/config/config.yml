@@ -21,6 +21,7 @@ framework:
     handler_id:  ~
   fragments:       ~
   http_method_override: true
+  profiler: { only_exceptions: false }
 
 web_profiler:
   toolbar: true
