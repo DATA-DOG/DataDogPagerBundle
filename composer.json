@@ -1,5 +1,5 @@
 {
-  "name": "DATA-DOG/DataDogPagerBundle",
+  "name": "data-dog/DataDogPagerBundle",
   "type": "symfony-bundle",
   "description": "Paginator bundle for symfony2 and doctrine orm, allows customization with filters and sorters",
   "keywords": ["pager", "paginator", "pagination", "symfony2", "bundle", "doctrine", "orm"],
@@ -31,6 +31,8 @@
     "symfony/symfony": "~2.7.0",
     "doctrine/orm": "~2.5.0",
     "doctrine/doctrine-bundle": "~1.4",
+    "doctrine/doctrine-fixtures-bundle": "~2.2.0",
+    "sensio/framework-extra-bundle": "~3.0.9",
 
     "phpunit/phpunit": "~4.7.0"
   },
@@ -41,8 +43,14 @@
     }
   },
 
+  "autoload-dev": {
+    "psr-4": {
+      "": "example/src/"
+    }
+  },
+
   "archive": {
-    "exclude": ["vendor", "tests", "*phpunit.xml", ".travis.yml", "example"]
+    "exclude": ["vendor", "tests", "*phpunit.xml", ".travis.yml", "example", "Makefile"]
   },
 
   "extra": {
