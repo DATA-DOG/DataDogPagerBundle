@@ -1,0 +1,6 @@
+services:
+  datadog.pager.twig_extension:
+    class: DataDog\PagerBundle\Twig\PaginationExtension
+    arguments: [@router]
+    tags:
+      - { name: twig.extension }

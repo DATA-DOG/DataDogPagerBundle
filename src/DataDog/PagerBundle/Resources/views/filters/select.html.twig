@@ -1,0 +1,7 @@
+<select class="form-control form-filter input-sm" onchange="document.location.href=this.value;">
+  {% for val, title in options %}
+    <option {% if filter_is_active(pagination, key, val) %}selected="selected"{% endif %}
+        value="{{ filter_uri(pagination, key, val) }}">{{ title }}
+    </option>
+  {% endfor %}
+</select>
