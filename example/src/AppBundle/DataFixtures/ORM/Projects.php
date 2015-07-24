@@ -52,7 +52,7 @@ class Projects implements OrderedFixtureInterface, FixtureInterface
         $manager->persist($xmonad);
 
         $faker = \Faker\Factory::create();
-        for ($i = 0; $i < 200; $i++) {
+        for ($i = 0; $i < 250; $i++) {
             $project = new Project();
             $project->setLanguage($faker->randomElement($langs));
             $project->setCode($faker->word);

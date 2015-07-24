@@ -59,14 +59,14 @@ class ProjectController extends Controller
         ];
 
         $languages = [
-            'any' => 'Any',
+            Pagination::$filterAny => 'Any',
             'php' => 'PHP',
             'hs' => 'Haskell',
             'go' => 'Golang',
         ];
 
         $spentTimeGroups = [
-            'any' => 'Any',
+            Pagination::$filterAny => 'Any',
             'lessThan10' => 'Less than 10h',
             'upTo20' => 'Up to 20h',
             'moreThan2weeks' => 'More than 2weeks',
