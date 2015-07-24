@@ -80,7 +80,10 @@ class PaginationExtension extends \Twig_Extension
 
     public function filterUri(Pagination $pagination, $key, $value)
     {
-        return $this->router->generate($pagination->route(), $this->merge($pagination->query(), ['filters' => [$key => $value]]));
+        return $this->router->generate(
+            $pagination->route(),
+            $this->mergeRecursive($pagination->query(), ['filters' => [$key => $value]])
+        );
     }
 
     public function filterIsActive(Pagination $pagination, $key, $value)

@@ -1,6 +1,6 @@
 <?php
 
-namespace DataDog\DependencyInjection;
+namespace DataDog\PagerBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;

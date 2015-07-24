@@ -136,7 +136,6 @@ class Pagination extends \ArrayIterator
      * @param QueryBuilder $qb
      * @param Request $request
      * @param array $options
-     * @return Pager
      */
     public function __construct(QueryBuilder $qb, Request $request, array $options = [])
     {
