@@ -23,6 +23,7 @@ class Projects implements OrderedFixtureInterface, FixtureInterface
         $pager->setCode("pg")
             ->setName("Pager for Symfony2")
             ->setLanguage($php)
+            ->setDeadline(8)
             ->setHoursSpent(6);
         $manager->persist($pager);
 
@@ -30,6 +31,7 @@ class Projects implements OrderedFixtureInterface, FixtureInterface
         $godog->setCode("godog")
             ->setName("Godog cucumber and behat like BDD framework for GO")
             ->setLanguage($go)
+            ->setDeadline(60)
             ->setHoursSpent(80);
         $manager->persist($godog);
 
@@ -37,6 +39,7 @@ class Projects implements OrderedFixtureInterface, FixtureInterface
         $sqlmock->setCode("sqlmock")
             ->setName("Sql driver mock for GO")
             ->setLanguage($go)
+            ->setDeadline(60)
             ->setHoursSpent(40);
         $manager->persist($sqlmock);
 
@@ -44,6 +47,7 @@ class Projects implements OrderedFixtureInterface, FixtureInterface
         $xmonad->setCode('xmonad')
             ->setName("Tiling window manager")
             ->setLanguage($haskell)
+            ->setDeadline(1500)
             ->setHoursSpent(9999);
         $manager->persist($xmonad);
 
@@ -54,6 +58,7 @@ class Projects implements OrderedFixtureInterface, FixtureInterface
             $project->setCode($faker->word);
             $project->setName($faker->sentence(5));
             $project->setHoursSpent($faker->numberBetween(1, 100));
+            $project->setDeadline($project->getHoursSpent() + $faker->numberBetween(-10, 30));
 
             $manager->persist($project);
         }

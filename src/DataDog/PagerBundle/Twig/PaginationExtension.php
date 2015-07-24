@@ -59,7 +59,10 @@ class PaginationExtension extends \Twig_Extension
         }
         // @NOTE: here multiple sorters can be used if sorters are merged from parameters
         // but not overwritten
-        $uri = $this->router->generate($pagination->route(), array_merge($pagination->query(), ['sorters' => [$key => $direction]]));
+        $uri = $this->router->generate($pagination->route(), array_merge($pagination->query(), [
+            'sorters' => [$key => $direction],
+            'page' => 1,
+        ]));
 
         return $twig->render(
             'DataDogPagerBundle::sorters/link.html.twig',
@@ -80,10 +83,10 @@ class PaginationExtension extends \Twig_Extension
 
     public function filterUri(Pagination $pagination, $key, $value)
     {
-        return $this->router->generate(
-            $pagination->route(),
-            $this->mergeRecursive($pagination->query(), ['filters' => [$key => $value]])
-        );
+        return $this->router->generate($pagination->route(), $this->mergeRecursive($pagination->query(), [
+            'filters' => [$key => $value],
+            'page' => 1,
+        ]));
     }
 
     public function filterIsActive(Pagination $pagination, $key, $value)

@@ -33,6 +33,11 @@ class Project
     private $hoursSpent = 0;
 
     /**
+     * @ORM\Column(type="integer")
+     */
+    private $deadline = 0;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Language")
      * @ORM\JoinColumn(nullable=false)
      */
@@ -85,5 +90,21 @@ class Project
     public function getLanguage()
     {
         return $this->language;
+    }
+
+    public function setDeadline($deadline)
+    {
+        $this->deadline = $deadline;
+        return $this;
+    }
+
+    public function getDeadline()
+    {
+        return $this->deadline;
+    }
+
+    public function isOverDeadline()
+    {
+        return $this->hoursSpent > $this->deadline;
     }
 }

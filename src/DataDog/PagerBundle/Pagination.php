@@ -225,7 +225,7 @@ class Pagination extends \ArrayIterator
                 $dql = $qb->getDQL(); // will check for difference
                 call_user_func_array($handler, [$qb, $key, $direction]);
                 if ($qb->getDQL() !== $dql) {
-                    return; // custom sorter handler has handled the parameter
+                    continue; // custom sorter handler has handled the parameter
                 }
             }
             $qb->addOrderBy($key, in_array(strtoupper($direction), ['ASC', 'DESC']) ? $direction : 'ASC');
@@ -236,14 +236,14 @@ class Pagination extends \ArrayIterator
     {
         foreach ($filters as $key => $val) {
             if ($val === self::$filterAny) {
-                return; // any value is accepted for this filter
+                continue; // any value is accepted for this filter
             }
             // custom handling
             if (null !== $handler) {
                 $dql = $qb->getDQL(); // will check for difference
                 call_user_func_array($handler, [$qb, $key, $val]);
                 if ($qb->getDQL() !== $dql) {
-                    return; // custom filter handler has handled the parameter
+                    continue; // custom filter handler has handled the parameter
                 }
             }
             $name = str_replace('.', '_', $key);
