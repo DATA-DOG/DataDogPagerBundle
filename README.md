@@ -75,7 +75,7 @@ the request. The **Pagination** object acts like an array, so you can pass it to
 
 The view:
 
-``` django
+``` twig
 <table class="table table-hover">
 <thead>
   <tr>
@@ -220,7 +220,7 @@ accordingly based on our custom options.
 
 So how the view has changed:
 
-``` django
+``` twig
 <table class="table table-hover">
 <thead>
   <tr>
