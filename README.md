@@ -268,6 +268,14 @@ We have used two new twig functions for filters:
 
 These functions are rendering twig templates for our filters.
 
+### Links
+
+In case if you need to make a link and maintain search filters and sorters applied, use the `$pagination->query()`
+function to get all the necessary url parameters and merge it with your link parameters.
+
+The demo example handles **enable** and **disable** toggling for projects in a separate controller action
+and maintains all pagination properties.
+
 ## Configuration
 
 There is no necessary configuration for a general usage. But in order to customize pagination
@@ -307,6 +315,12 @@ can customize them same as any other bundle template, for example:
 
 - pagination - **app/Resources/DataDogPagerBundle/views/pagination.html.twig**
 - search filter - **app/Resources/DataDogPagerBundle/views/filters/search.html.twig**
+
+## Screenshots
+
+![Screenshot](https://raw.github.com/DATA-DOG/godog/master/screenshots/pagination1.png)
+
+![Screenshot](https://raw.github.com/DATA-DOG/godog/master/screenshots/pagination2.png)
 
 ## License
 

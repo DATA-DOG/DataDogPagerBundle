@@ -51,7 +51,7 @@
   },
 
   "archive": {
-    "exclude": ["vendor", "tests", "*phpunit.xml", ".travis.yml", "example", "Makefile"]
+    "exclude": ["vendor", "tests", "*phpunit.xml", ".travis.yml", "example", "Makefile", "screenshots"]
   },
 
   "extra": {

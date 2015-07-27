@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\QueryBuilder;
 use DataDog\PagerBundle\Pagination;
+use AppBundle\Entity\Project;
 
 class ProjectController extends Controller
 {
@@ -38,6 +39,11 @@ class ProjectController extends Controller
                 break;
             }
             break;
+        case 'l.code':
+            return; // we allow this filter
+        default:
+            // if user attemps to filter by other fields, we restrict it
+            throw new \Exception("filter not allowed");
         }
     }
 
@@ -76,5 +82,21 @@ class ProjectController extends Controller
 
         $projects = new Pagination($qb, $request, $options);
         return compact('projects', 'languages', 'spentTimeGroups');
+    }
+
+    /**
+     * @Method("GET")
+     * @Template
+     * @Route("/toggle/{id}", name="project_toggle")
+     */
+    public function toggleAction(Project $project, Request $request)
+    {
+        $project->setEnabled(!$project->getEnabled());
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($project);
+        $em->flush();
+
+        // redirect to the list with the same filters applied as before
+        return $this->redirect($this->generateUrl('homepage', $request->query->all()));
     }
 }

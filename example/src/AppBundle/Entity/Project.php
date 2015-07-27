@@ -33,6 +33,11 @@ class Project
     private $hoursSpent = 0;
 
     /**
+     * @ORM\Column(type="boolean")
+     */
+    private $enabled = true;
+
+    /**
      * @ORM\Column(type="integer")
      */
     private $deadline = 0;
@@ -106,5 +111,16 @@ class Project
     public function isOverDeadline()
     {
         return $this->hoursSpent > $this->deadline;
+    }
+
+    public function setEnabled($enabled)
+    {
+        $this->enabled = $enabled;
+        return $this;
+    }
+
+    public function getEnabled()
+    {
+        return $this->enabled;
     }
 }
