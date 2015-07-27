@@ -6,8 +6,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Doctrine\ORM\QueryBuilder;
 use Symfony\Component\HttpFoundation\Request;
+use Doctrine\ORM\QueryBuilder;
 use DataDog\PagerBundle\Pagination;
 
 class ProjectController extends Controller
@@ -55,6 +55,7 @@ class ProjectController extends Controller
 
         $options = [
             'sorters' => ['l.code' => 'ASC'], // sorted by language code by default
+            'filters' => ['p.hoursSpent' => 'overDeadline'], // we can apply a filter option by default
             'applyFilter' => [$this, 'projectFilters'], // custom filter handling
         ];
 
