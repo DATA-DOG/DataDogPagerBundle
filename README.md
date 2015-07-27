@@ -318,9 +318,9 @@ can customize them same as any other bundle template, for example:
 
 ## Screenshots
 
-![Screenshot](https://raw.github.com/DATA-DOG/godog/master/screenshots/pagination1.png)
+![Screenshot](https://raw.github.com/DATA-DOG/DataDogPagerBundle/master/screenshots/pagination1.png)
 
-![Screenshot](https://raw.github.com/DATA-DOG/godog/master/screenshots/pagination2.png)
+![Screenshot](https://raw.github.com/DATA-DOG/DataDogPagerBundle/master/screenshots/pagination2.png)
 
 ## License
 
