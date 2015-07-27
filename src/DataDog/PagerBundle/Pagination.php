@@ -147,8 +147,8 @@ class Pagination extends \ArrayIterator
                 unset($params[$key]);
             }
         }
-        // merge default sorters
-        $params['sorters'] = array_merge($sorters, isset($params['sorters']) ? $params['sorters'] : []);
+        // only one sorter may be used, from params or default
+        $params['sorters'] = isset($params['sorters']) ? $params['sorters'] : $sorters;
         // merge default filters
         $params['filters'] = array_merge($filters, isset($params['filters']) ? $params['filters'] : []);
 

@@ -1,21 +1,29 @@
-{% set func = "search_filter_" ~ key | replace({".": "_"}) %}
+{% set changed = "search_filter_changed_" ~ key | replace({".": "_"}) %}
+{% set keyUp = "search_filter_key_up_" ~ key | replace({".": "_"}) %}
 <input type="text"
        class="form-control input-sm"
        value="{{ value }}"
        data-link="{{ filter_uri(pagination, key, "_search_pattern_") }}"
-       onkeypress="this.onchange();"
+       onkeyup="{{ keyUp }}(this, event)"
        onpaste="this.onchange();"
        oninput="this.onchange();"
-       onchange="{{ func }}(this);"/>
+       onchange="{{ changed }}(this);"/>
 
 <script>
 (function(wnd, doc) {
   var timeout;
-  wnd.{{ func }} = function(inp) {
+  wnd.{{ changed }} = function(inp) {
     timeout && wnd.clearTimeout(timeout)
     timeout = wnd.setTimeout(function() {
       doc.location.href = inp.getAttribute('data-link').replace("_search_pattern_", inp.value);
     }, 1500); // 1.5 seconds
-  }
+  };
+
+  wnd.{{ keyUp }} = function(inp, e) {
+    if (e.keyCode == 13) {
+      timeout && wnd.clearTimeout(timeout)
+      doc.location.href = inp.getAttribute('data-link').replace("_search_pattern_", inp.value);
+    }
+  };
 }(window, document));
 </script>

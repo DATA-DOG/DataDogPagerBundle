@@ -301,7 +301,8 @@ $kernel->terminate($request, $response);
 
 ### Templates
 
-The default templates for filters and pagination are based on [twitter bootstrap](http://getbootstrap.com/) and you
+The default templates for filters and pagination are based on [twitter bootstrap](http://getbootstrap.com/) and
+[fontawesome](http://fortawesome.github.io/Font-Awesome/). You
 can customize them same as any other bundle template, for example:
 
 - pagination - **app/Resources/DataDogPagerBundle/views/pagination.html.twig**

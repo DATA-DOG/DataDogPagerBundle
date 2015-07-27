@@ -52,10 +52,10 @@ class PaginationExtension extends \Twig_Extension
     {
         $params = $pagination->query();
         $direction = 'asc';
-        $class = 'sorting';
+        $className = "";
         if (isset($params['sorters'][$key])) {
-            $direction = strtoupper($params['sorters'][$key]) === 'ASC' ? 'DESC' : 'ASC';
-            $class = strtolower($direction);
+            $direction = strtolower($params['sorters'][$key]) === 'asc' ? 'desc' : 'asc';
+            $className = $direction;
         }
         // @NOTE: here multiple sorters can be used if sorters are merged from parameters
         // but not overwritten
@@ -66,7 +66,7 @@ class PaginationExtension extends \Twig_Extension
 
         return $twig->render(
             'DataDogPagerBundle::sorters/link.html.twig',
-            compact('key', 'pagination', 'title', 'uri', 'class')
+            compact('key', 'pagination', 'title', 'uri', 'direction', 'className')
         );
     }
 
