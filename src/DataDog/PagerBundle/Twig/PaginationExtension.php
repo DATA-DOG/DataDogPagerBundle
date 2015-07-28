@@ -91,7 +91,7 @@ class PaginationExtension extends \Twig_Extension
 
     public function filterIsActive(Pagination $pagination, $key, $value)
     {
-        return isset($pagination->query()['filters'][$key]) && $pagination->query()['filters'][$key] === $value;
+        return isset($pagination->query()['filters'][$key]) && $pagination->query()['filters'][$key] == $value;
     }
 
     public function pagination(\Twig_Environment $twig, Pagination $pagination)
