@@ -20,7 +20,9 @@ class ProjectController extends Controller
             if ($val) {
                 $qb->andWhere($qb->expr()->like('p.name', "'%{$val}%'"));
             } else {
-                $qb->andWhere($qb->expr()->isNotNull('p.name'));
+                // this allows us to safely ignore empty values
+                // otherwise if $qb is not changed, it would add where the string is empty statement.
+                $qb->andWhere('1 = 1');
             }
             break;
         case 'p.hoursSpent':

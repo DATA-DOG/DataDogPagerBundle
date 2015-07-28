@@ -7,7 +7,7 @@ use DataDog\PagerBundle\Pagination;
 
 class PaginationExtension extends \Twig_Extension
 {
-    private $router;
+    protected $router;
 
     public function __construct(RouterInterface $router)
     {
@@ -37,7 +37,7 @@ class PaginationExtension extends \Twig_Extension
         ];
     }
 
-    private function mergeRecursive($a, $b)
+    protected function mergeRecursive($a, $b)
     {
         if (!is_array($a) or !is_array($b)) {
             return $b;

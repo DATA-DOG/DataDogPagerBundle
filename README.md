@@ -146,7 +146,9 @@ class ProjectController extends Controller
             if ($val) {
                 $qb->andWhere($qb->expr()->like('p.name', "'%{$val}%'"));
             } else {
-                $qb->andWhere($qb->expr()->isNotNull('p.name'));
+                // this allows us to safely ignore empty values
+                // otherwise if $qb is not changed, it would add where the string is empty statement.
+                $qb->andWhere('1 = 1');
             }
             break;
         case 'p.hoursSpent':
@@ -315,6 +317,55 @@ can customize them same as any other bundle template, for example:
 
 - pagination - **app/Resources/DataDogPagerBundle/views/pagination.html.twig**
 - search filter - **app/Resources/DataDogPagerBundle/views/filters/search.html.twig**
+
+### Extending with more filters
+
+The best way to customize your filters is to extend twig extension, or create a new extension.
+If we would provide many options, that would confuse people in the end, so instead we add a little boilerplate.
+In your bundle **services.yml** update parameters:
+
+``` yaml
+parameters:
+  datadog.pager.twig_extension.class: AppBundle\Twig\PaginationExtension
+```
+
+Then create a class:
+
+``` php
+<?php
+
+namespace AppBundle\Twig;
+
+use DataDog\PagerBundle\Twig\PaginationExtension as Base;
+use DataDog\PagerBundle\Pagination;
+
+class PaginationExtension extends Base
+{
+    /**
+     * {@inheritdoc}
+     */
+    public function getFunctions()
+    {
+        $defaults = [
+            'is_safe' => ['html'],
+            'needs_environment' => true,
+        ];
+
+        $funcs = parent::getFunctions();
+        $funcs['filter_search_placeholder'] = new \Twig_Function_Method($this, 'filterSearchPlaceholder', $defaults);
+
+        return $funcs;
+    }
+
+    public function filterSearchPlaceholder(\Twig_Environment $twig, Pagination $pagination, $key, $placeholder)
+    {
+        $value = isset($pagination->query()['filters'][$key]) ? $pagination->query()['filters'][$key] : '';
+        return $twig->render('AppBundle::filters/search_placeholder.html.twig', compact('key', 'pagination', 'value', 'placeholder'));
+    }
+}
+```
+
+And finally copy and modify the template based on your needs
 
 ## Screenshots
 
