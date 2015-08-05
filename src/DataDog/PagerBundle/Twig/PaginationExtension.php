@@ -37,13 +37,18 @@ class PaginationExtension extends \Twig_Extension
         ];
     }
 
-    protected function mergeRecursive($a, $b)
+    protected function mergeRecursive(array $a, array $b)
     {
-        if (!is_array($a) or !is_array($b)) {
-            return $b;
-        }
-        foreach ($b AS $k => $v) {
-            $a[$k] = $this->mergeRecursive(@$a[$k], $v);
+        foreach ($b as $k => $v) {
+            if (!array_key_exists($k, $a)) {
+                $a[$k] = $v;
+                continue;
+            }
+            if (is_array($v)) {
+                $a[$k] = $this->mergeRecursive(is_array($a[$k]) ? $a[$k] : [], $v);
+                continue;
+            }
+            $a[$k] = $v;
         }
         return $a;
     }
