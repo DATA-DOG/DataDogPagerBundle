@@ -144,29 +144,37 @@ class ProjectController extends Controller
         switch ($key) {
         case 'p.name':
             if ($val) {
-                $qb->andWhere($qb->expr()->like('p.name', "'%{$val}%'"));
-            } else {
-                // this allows us to safely ignore empty values
-                // otherwise if $qb is not changed, it would add where the string is empty statement.
-                $qb->andWhere('1 = 1');
+                $qb->andWhere($qb->expr()->like('p.name', ':name'));
+                $qb->setParameter('name', "%$val%");
             }
             break;
         case 'p.hoursSpent':
             switch ($val) {
             case 'lessThan10':
-                $qb->andWhere($qb->expr()->lt('p.hoursSpent', $qb->expr()->literal(10)));
+                $qb->andWhere($qb->expr()->lt('p.hoursSpent', 10));
                 break;
             case 'upTo20':
-                $qb->andWhere($qb->expr()->lte('p.hoursSpent', $qb->expr()->literal(20)));
+                $qb->andWhere($qb->expr()->lte('p.hoursSpent', 20));
                 break;
             case 'moreThan2weeks':
-                $qb->andWhere($qb->expr()->gte('p.hoursSpent', $qb->expr()->literal(80)));
+                $qb->andWhere($qb->expr()->gte('p.hoursSpent', 80));
                 break;
             case 'overDeadline':
                 $qb->andWhere($qb->expr()->gt('p.hoursSpent', 'p.deadline'));
                 break;
             }
             break;
+        case 'l.code':
+            $qb->andWhere($qb->expr()->eq('l.code', ':code'));
+            $qb->setParameter('code', $val);
+            break;
+        default:
+            // Do not allow filtering by anything else
+            throw new \Exception("filter not allowed");
+            // You can also enable automatic filtering
+            //$paramName = preg_replace('/[^A-z]/', '_', $key);
+            //$qb->andWhere($qb->expr()->eq($key, ":$paramName"));
+            //$qb->setParameter($paramName, $val);
         }
     }
 
