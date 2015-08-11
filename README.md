@@ -167,9 +167,9 @@ class ProjectController extends Controller
             // Do not allow filtering by anything else
             throw new \Exception("filter not allowed");
             // You can also enable automatic filtering
-            // $paramName = str_replace('.', '_', $key);
-            // $qb->andWhere("$key = :" . $paramName);
-            // $qb->setParameter($paramName, $val);
+            //$paramName = preg_replace('/[^A-z]/', '_', $key);
+            //$qb->andWhere($qb->expr()->eq($key, ":$paramName"));
+            //$qb->setParameter($paramName, $val);
         }
     }
 

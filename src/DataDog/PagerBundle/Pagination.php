@@ -235,9 +235,18 @@ class Pagination extends \ArrayIterator
     protected function applyFilters(QueryBuilder $qb, array $filters, callable $handler = null)
     {
         foreach ($filters as $key => $val) {
-            if ($val !== self::$filterAny && null !== $handler) {
-                call_user_func_array($handler, [$qb, $key, $val]);
+            if ($val === self::$filterAny) {
+                continue;
             }
+
+            if (null !== $handler) {
+                call_user_func_array($handler, [$qb, $key, $val]);
+                continue;
+            }
+
+            $name = preg_replace('/[^A-z]/', '_', $key);
+            $qb->andWhere($qb->expr()->{is_array($val) ? 'in' : 'eq'}($key, ':'.$name));
+            $qb->setParameter($name, $val);
         }
     }
 
