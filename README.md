@@ -145,10 +145,6 @@ class ProjectController extends Controller
         case 'p.name':
             if ($val) {
                 $qb->andWhere($qb->expr()->like('p.name', "'%{$val}%'"));
-            } else {
-                // this allows us to safely ignore empty values
-                // otherwise if $qb is not changed, it would add where the string is empty statement.
-                $qb->andWhere('1 = 1');
             }
             break;
         case 'p.hoursSpent':
@@ -167,6 +163,13 @@ class ProjectController extends Controller
                 break;
             }
             break;
+        default:
+            // Do not allow filtering by anything else
+            throw new \Exception("filter not allowed");
+            // You can also enable automatic filtering
+            // $paramName = str_replace('.', '_', $key);
+            // $qb->andWhere("$key = :" . $paramName);
+            // $qb->setParameter($paramName, $val);
         }
     }
 
