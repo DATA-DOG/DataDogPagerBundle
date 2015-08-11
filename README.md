@@ -228,6 +228,10 @@ refer to direct values, so the where statement does not need to be modified. But
 use custom options. In that case we need an `applyFilter` option to be set as a callable so the QueryBuilder could be modified
 accordingly based on our custom options.
 
+**NOTE:** if you manage custom filtering, be sure to use parameters or use `$qb->expr()->literal("string")` to prevent
+SQL injections. Also if you have custom filter handler, you must manage all your filters, the default handler will not
+be active.
+
 So how the view has changed:
 
 ``` twig
