@@ -48,7 +48,8 @@ class Projects implements OrderedFixtureInterface, FixtureInterface
             ->setName("Tiling window manager")
             ->setLanguage($haskell)
             ->setDeadline(1500)
-            ->setHoursSpent(9999);
+            ->setHoursSpent(9999)
+            ->setStatus(Project::CLOSED);
         $manager->persist($xmonad);
 
         $faker = \Faker\Factory::create();
@@ -59,6 +60,7 @@ class Projects implements OrderedFixtureInterface, FixtureInterface
             $project->setName($faker->sentence(5));
             $project->setHoursSpent($faker->numberBetween(1, 100));
             $project->setDeadline($project->getHoursSpent() + $faker->numberBetween(-10, 30));
+            $project->setStatus($faker->numberBetween(Project::OPEN, Project::CLOSED));
 
             $manager->persist($project);
         }

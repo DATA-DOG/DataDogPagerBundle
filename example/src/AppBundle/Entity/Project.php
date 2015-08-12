@@ -10,6 +10,9 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Project
 {
+    const OPEN = 1;
+    const CLOSED = 2;
+
     /**
      * @ORM\GeneratedValue
      * @ORM\Id
@@ -41,6 +44,11 @@ class Project
      * @ORM\Column(type="integer")
      */
     private $deadline = 0;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $status = self::OPEN;
 
     /**
      * @ORM\ManyToOne(targetEntity="Language")
@@ -122,5 +130,16 @@ class Project
     public function getEnabled()
     {
         return $this->enabled;
+    }
+
+    public function setStatus($status)
+    {
+        $this->status = $status;
+        return $this;
+    }
+
+    public function getStatus()
+    {
+        return $this->status;
     }
 }

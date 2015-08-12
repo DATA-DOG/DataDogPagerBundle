@@ -30,6 +30,7 @@ class PaginationExtension extends \Twig_Extension
 
             'filter_select' => new \Twig_Function_Method($this, 'filterSelect', $defaults),
             'filter_search' => new \Twig_Function_Method($this, 'filterSearch', $defaults),
+            'filter_dropdown' => new \Twig_Function_Method($this, 'filterDropdown', $defaults),
 
             'sorter_link' => new \Twig_Function_Method($this, 'sorterLink', $defaults),
 
@@ -78,6 +79,12 @@ class PaginationExtension extends \Twig_Extension
     public function filterSelect(\Twig_Environment $twig, Pagination $pagination, $key, array $options)
     {
         return $twig->render('DataDogPagerBundle::filters/select.html.twig', compact('key', 'pagination', 'options'));
+    }
+
+    public function filterDropdown(\Twig_Environment $twig, Pagination $pagination, $key, array $options)
+    {
+        $default = reset($options);
+        return $twig->render('DataDogPagerBundle::filters/dropdown.html.twig', compact('key', 'pagination', 'options', 'default'));
     }
 
     public function filterSearch(\Twig_Environment $twig, Pagination $pagination, $key)

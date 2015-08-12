@@ -6,6 +6,10 @@
     <p class="lead">Pagination with sorters and custom filters.</p>
   </div>
 
+  <div class="row">
+    <div class="col-sm-offset-9 col-sm-3">{{ filter_dropdown(projects, "p.status", statuses) }}</div>
+  </div>
+
   <table class="table table-hover">
     <thead>
       <tr>

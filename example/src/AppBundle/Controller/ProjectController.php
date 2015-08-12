@@ -42,6 +42,10 @@ class ProjectController extends Controller
             $qb->andWhere($qb->expr()->eq('l.code', ':code'));
             $qb->setParameter('code', $val);
             break;
+        case 'p.status':
+            $qb->andWhere($qb->expr()->eq('p.status', ':status'));
+            $qb->setParameter('status', intval($val));
+            break;
         default:
             // if user attemps to filter by other fields, we restrict it
             throw new \Exception("filter not allowed");
@@ -73,6 +77,12 @@ class ProjectController extends Controller
             'go' => 'Golang',
         ];
 
+        $statuses = [
+            Pagination::$filterAny => 'Any Status',
+            Project::OPEN => 'Open',
+            Project::CLOSED => 'Closed',
+        ];
+
         $spentTimeGroups = [
             Pagination::$filterAny => 'Any',
             'lessThan10' => 'Less than 10h',
@@ -82,7 +92,7 @@ class ProjectController extends Controller
         ];
 
         $projects = new Pagination($qb, $request, $options);
-        return compact('projects', 'languages', 'spentTimeGroups');
+        return compact('projects', 'languages', 'spentTimeGroups', 'statuses');
     }
 
     /**

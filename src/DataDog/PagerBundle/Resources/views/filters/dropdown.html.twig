@@ -1,0 +1,28 @@
+<div class="btn-group btn-group-justified" role="group">
+  <div class="btn-group">
+    {% set found = false %}
+    {% for val, title in options %}
+      {% if filter_is_active(pagination, key, val) and not found %}
+        <button class="btn btn-default dropdown-toggle" type="button" id="dropdown-{{ key }}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+          {{ title }}
+          <span class="caret"></span>
+        </button>
+        {% set found = true %}
+      {% endif %}
+    {% endfor %}
+
+    {% if not found %}
+      <button class="btn btn-default dropdown-toggle" type="button" id="dropdown-{{ key }}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+        {{ default }} <span class="caret text-right"></span>
+      </button>
+    {% endif %}
+
+    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdown-{{ key }}">
+      {% for val, title in options %}
+        <li role="presentation">
+          <a role="menuitem" tabindex="-1" href="{{ filter_uri(pagination, key, val) }}">{{ title }}</a>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
