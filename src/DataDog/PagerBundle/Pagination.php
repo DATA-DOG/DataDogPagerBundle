@@ -158,7 +158,7 @@ class Pagination extends \ArrayIterator
 
         $counter = clone $paginator;
         $counter->resetDQLPart('orderBy');
-        $counter->select("COUNT({$counter->getRootAlias()})");
+        $counter->select($qb->expr()->countDistinct($qb->getRootAlias()));
 
         $this->page = max(abs(intval((isset($params['page']) ? $params['page'] : 1))), 1);
         $this->limit = abs(intval((isset($params['limit']) ? $params['limit'] : $limit)));
