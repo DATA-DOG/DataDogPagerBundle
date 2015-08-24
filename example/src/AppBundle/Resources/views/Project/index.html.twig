@@ -24,7 +24,7 @@
       <tr role="row" class="filter">
         <td></td>
         <td></td>
-        <td>{{ filter_search(projects, "p.name") }}</td>
+        <td>{{ filter_search(projects, "p.name", "Search by name..") }}</td>
         <td>{{ filter_select(projects, "p.hoursSpent", spentTimeGroups) }}</td>
         <td>{{ filter_select(projects, "l.code", languages) }}</td>
         <td></td>

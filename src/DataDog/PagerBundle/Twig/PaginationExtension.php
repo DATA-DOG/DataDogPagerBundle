@@ -87,10 +87,10 @@ class PaginationExtension extends \Twig_Extension
         return $twig->render('DataDogPagerBundle::filters/dropdown.html.twig', compact('key', 'pagination', 'options', 'default'));
     }
 
-    public function filterSearch(\Twig_Environment $twig, Pagination $pagination, $key)
+    public function filterSearch(\Twig_Environment $twig, Pagination $pagination, $key, $placeholder = '')
     {
         $value = isset($pagination->query()['filters'][$key]) ? $pagination->query()['filters'][$key] : '';
-        return $twig->render('DataDogPagerBundle::filters/search.html.twig', compact('key', 'pagination', 'value'));
+        return $twig->render('DataDogPagerBundle::filters/search.html.twig', compact('key', 'pagination', 'value', 'placeholder'));
     }
 
     public function filterUri(Pagination $pagination, $key, $value)

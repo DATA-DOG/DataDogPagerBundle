@@ -4,6 +4,7 @@
        class="form-control input-sm"
        value="{{ value }}"
        data-link="{{ filter_uri(pagination, key, "_search_pattern_") }}"
+       {% if placeholder %}placeholder="{{ placeholder }}"{% endif %}
        onkeyup="{{ keyUp }}(this, event)"
        onpaste="this.onchange();"
        oninput="this.onchange();"
