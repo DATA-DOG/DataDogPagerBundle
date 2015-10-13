@@ -25,16 +25,16 @@ class PaginationExtension extends \Twig_Extension
         ];
 
         return [
-            'filter_uri' => new \Twig_Function_Method($this, 'filterUri'),
-            'filter_is_active' => new \Twig_Function_Method($this, 'filterIsActive'),
+            new \Twig_SimpleFunction('filter_uri', [$this, 'filterUri']),
+            new \Twig_SimpleFunction('filter_is_active', [$this, 'filterIsActive']),
 
-            'filter_select' => new \Twig_Function_Method($this, 'filterSelect', $defaults),
-            'filter_search' => new \Twig_Function_Method($this, 'filterSearch', $defaults),
-            'filter_dropdown' => new \Twig_Function_Method($this, 'filterDropdown', $defaults),
+            new \Twig_SimpleFunction('filter_select', [$this, 'filterSelect'], $defaults),
+            new \Twig_SimpleFunction('filter_search', [$this, 'filterSearch'], $defaults),
+            new \Twig_SimpleFunction('filter_dropdown', [$this, 'filterDropdown'], $defaults),
 
-            'sorter_link' => new \Twig_Function_Method($this, 'sorterLink', $defaults),
+            new \Twig_SimpleFunction('sorter_link', [$this, 'sorterLink'], $defaults),
 
-            'pagination' => new \Twig_Function_Method($this, 'pagination', $defaults),
+            new \Twig_SimpleFunction('pagination', [$this, 'pagination'], $defaults),
         ];
     }
 
