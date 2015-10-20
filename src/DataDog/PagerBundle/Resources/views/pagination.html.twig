@@ -67,9 +67,15 @@
 
 <p class="pagination-summary">
   {% if pager.total == 0 %}
-    No records were found
+    {% trans %}no_records_found{% endtrans %}
   {% else %}
-    Showing {{ pager.itemsPerPage*(pager.currentPage-1) + 1 }}-{{ min(pager.itemsPerPage + pager.itemsPerPage*(pager.currentPage-1), pager.total) }} from {{ pager.total }}
+    {% set record_from = pager.itemsPerPage*(pager.currentPage-1) + 1 %}
+    {% set record_to = min(pager.itemsPerPage + pager.itemsPerPage*(pager.currentPage-1), pager.total) %}
+    {% set total_pages = pager.total %}
+
+    {% trans with {'RECORD_FROM': record_from, 'RECORD_TO': record_to, 'TOTAL_PAGES': total_pages} %}
+    showing_records
+    {% endtrans %}
   {% endif %}
 </p>
 <div class="clearfix"></div>
