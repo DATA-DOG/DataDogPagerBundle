@@ -1,4 +1,6 @@
+{% trans_default_domain "pager" %}
 {% set pager = pagination %}
+
 <ul class="pagination">
   {% if pager.pagination.previous is defined %}
     <li>
@@ -73,9 +75,7 @@
     {% set record_to = min(pager.itemsPerPage + pager.itemsPerPage*(pager.currentPage-1), pager.total) %}
     {% set total_pages = pager.total %}
 
-    {% trans with {'RECORD_FROM': record_from, 'RECORD_TO': record_to, 'TOTAL_PAGES': total_pages} %}
-    showing_records
-    {% endtrans %}
+    {% trans with {'FROM': record_from, 'TO': record_to, 'TOTAL_PAGES': total_pages} %}showing_records{% endtrans %}
   {% endif %}
 </p>
 <div class="clearfix"></div>
