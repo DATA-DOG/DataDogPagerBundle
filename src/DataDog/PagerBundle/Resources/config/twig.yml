@@ -4,6 +4,6 @@ parameters:
 services:
   datadog.pager.twig_extension:
     class: %datadog.pager.twig_extension.class%
-    arguments: [@router]
+    arguments: ["@router"]
     tags:
       - { name: twig.extension }
