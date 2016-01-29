@@ -30,6 +30,7 @@ class PaginationExtension extends \Twig_Extension
 
             new \Twig_SimpleFunction('filter_select', [$this, 'filterSelect'], $defaults),
             new \Twig_SimpleFunction('filter_search', [$this, 'filterSearch'], $defaults),
+            new \Twig_SimpleFunction('filter_range', [$this, 'filterRange'], $defaults),
             new \Twig_SimpleFunction('filter_dropdown', [$this, 'filterDropdown'], $defaults),
 
             new \Twig_SimpleFunction('sorter_link', [$this, 'sorterLink'], $defaults),
@@ -91,6 +92,11 @@ class PaginationExtension extends \Twig_Extension
     {
         $value = isset($pagination->query()['filters'][$key]) ? $pagination->query()['filters'][$key] : '';
         return $twig->render('DataDogPagerBundle::filters/search.html.twig', compact('key', 'pagination', 'value', 'placeholder'));
+    }
+
+    public function filterRange(\Twig_Environment $twig, Pagination $pagination, $key, $placeholder = '')
+    {
+        return $twig->render('DataDogPagerBundle::filters/range.html.twig', compact('key', 'pagination', 'placeholder'));
     }
 
     public function filterUri(Pagination $pagination, $key, $value)
