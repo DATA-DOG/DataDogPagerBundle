@@ -19,7 +19,7 @@
 
   "require": {
     "php": ">=5.4.0",
-    "symfony/framework-bundle": "~2.3",
+    "symfony/framework-bundle": "~2.3|~3.0",
     "doctrine/orm": "~2.3",
     "twig/twig": "~1.5"
   },
@@ -28,11 +28,11 @@
     "ext-pdo": "*",
     "ext-pdo_sqlite": "*",
 
-    "symfony/symfony": "~2.7.0",
+    "symfony/symfony": "~3.0.0",
     "doctrine/orm": "~2.5.0",
-    "doctrine/doctrine-bundle": "~1.4",
-    "doctrine/doctrine-fixtures-bundle": "~2.2.0",
-    "sensio/framework-extra-bundle": "~3.0.9",
+    "doctrine/doctrine-bundle": "^1.6",
+    "doctrine/doctrine-fixtures-bundle": "^2.3",
+    "sensio/framework-extra-bundle": "^3.0.9",
     "fzaninotto/faker": "~1.5",
 
     "phpunit/phpunit": "~4.7.0"
