@@ -59,6 +59,14 @@ class Pagination extends \ArrayIterator
         'applySorter' => null,
 
         /**
+         * This callable will be called then you need custom counter
+         * found in the url: function (QueryBuilder $qb)
+         *
+         * @var callable
+         */
+        'applyCounter' => null,
+
+        /**
          * Default filters to apply ['key' => 'value'] array
          *
          * @var array
@@ -156,9 +164,13 @@ class Pagination extends \ArrayIterator
         $this->applyFilters($paginator, $params['filters'], $applyFilter);
         $this->applySorters($paginator, $params['sorters'], $applySorter);
 
-        $counter = clone $paginator;
-        $counter->resetDQLPart('orderBy');
-        $counter->select($qb->expr()->countDistinct($qb->getRootAlias()));
+        if (is_null($applyCounter)) {
+            $counter = clone $paginator;
+            $counter->resetDQLPart('orderBy');
+            $counter->select($qb->expr()->countDistinct($qb->getRootAlias()));
+        } else {
+            $counter = call_user_func_array($applyCounter, [clone $paginator]);
+        }
 
         $this->page = max(abs(intval((isset($params['page']) ? $params['page'] : 1))), 1);
         $this->limit = abs(intval((isset($params['limit']) ? $params['limit'] : $limit)));
