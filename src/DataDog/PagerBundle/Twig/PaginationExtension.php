@@ -71,26 +71,26 @@ class PaginationExtension extends \Twig_Extension
         ]));
 
         return $twig->render(
-            'DataDogPagerBundle::sorters/link.html.twig',
+            '@DataDogPager/sorters/link.html.twig',
             compact('key', 'pagination', 'title', 'uri', 'direction', 'className')
         );
     }
 
     public function filterSelect(\Twig_Environment $twig, Pagination $pagination, $key, array $options)
     {
-        return $twig->render('DataDogPagerBundle::filters/select.html.twig', compact('key', 'pagination', 'options'));
+        return $twig->render('@DataDogPager/filters/select.html.twig', compact('key', 'pagination', 'options'));
     }
 
     public function filterDropdown(\Twig_Environment $twig, Pagination $pagination, $key, array $options)
     {
         $default = reset($options);
-        return $twig->render('DataDogPagerBundle::filters/dropdown.html.twig', compact('key', 'pagination', 'options', 'default'));
+        return $twig->render('@DataDogPager/filters/dropdown.html.twig', compact('key', 'pagination', 'options', 'default'));
     }
 
     public function filterSearch(\Twig_Environment $twig, Pagination $pagination, $key, $placeholder = '')
     {
         $value = isset($pagination->query()['filters'][$key]) ? $pagination->query()['filters'][$key] : '';
-        return $twig->render('DataDogPagerBundle::filters/search.html.twig', compact('key', 'pagination', 'value', 'placeholder'));
+        return $twig->render('@DataDogPager/filters/search.html.twig', compact('key', 'pagination', 'value', 'placeholder'));
     }
 
     public function filterUri(Pagination $pagination, $key, $value)
@@ -108,7 +108,7 @@ class PaginationExtension extends \Twig_Extension
 
     public function pagination(\Twig_Environment $twig, Pagination $pagination)
     {
-        return $twig->render('DataDogPagerBundle::pagination.html.twig', compact('pagination'));
+        return $twig->render('@DataDogPager/pagination.html.twig', compact('pagination'));
     }
 
     public function getName()
