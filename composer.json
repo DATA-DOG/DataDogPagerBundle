@@ -28,14 +28,14 @@
     "ext-pdo": "*",
     "ext-pdo_sqlite": "*",
 
-    "symfony/symfony": "~3.0.0",
+    "symfony/symfony": "~3.3.0",
     "doctrine/orm": "~2.5.0",
     "doctrine/doctrine-bundle": "^1.6",
     "doctrine/doctrine-fixtures-bundle": "^2.3",
     "sensio/framework-extra-bundle": "^3.0.9",
     "fzaninotto/faker": "~1.5",
 
-    "phpunit/phpunit": "~4.7.0"
+    "phpunit/phpunit": "~6.0.0"
   },
 
   "autoload": {
