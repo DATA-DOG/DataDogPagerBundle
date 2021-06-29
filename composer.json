@@ -19,7 +19,7 @@
 
   "require": {
     "php": ">=5.4.0",
-    "symfony/framework-bundle": "2.3 - 5.3",
+    "symfony/framework-bundle": "2.3 - 5.4",
     "doctrine/orm": "~2.3",
     "twig/twig": "~1.34|~2.0|~3.0"
   },
